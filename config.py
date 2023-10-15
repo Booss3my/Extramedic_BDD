@@ -37,8 +37,8 @@ address_cols = [
 columns_of_interest =["Identification nationale PP", "Code secteur d'activité",'Nom d\'exercice',"Prénom d\'exercice",'Libellé profession'\
                        ,'Libellé savoir-faire','Code catégorie professionnelle'] + address_cols
 
-df_old = df_old[columns_of_interest]
-df_new = df_new[columns_of_interest]
+df_old = df_old[columns_of_interest].drop_duplicates()
+df_new = df_new[columns_of_interest].drop_duplicates()
 
 
 #convert to string then strip(), to avoid (having categories like "A " and "A")
