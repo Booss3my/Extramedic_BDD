@@ -22,8 +22,10 @@ changes_mask = (
     (merged_df[COL_CHANGE_CODE_PAYS + '_old'] != merged_df[COL_CHANGE_CODE_PAYS + '_new'])
 )
 
-changes_df = merged_df[changes_mask]
+changes_df = merged_df[changes_mask].drop_duplicates()
 
+
+changes_df.merge()
 address_changed_ids = changes_df['Identification nationale PP'].unique()
 
 df_new_address_changed = df_new[df_new[PROFILES_COL].isin(address_changed_ids)]

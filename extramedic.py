@@ -85,19 +85,15 @@ df_new_profiles.to_csv("nouveaux_profils.csv", index=False)
 print_loading_bar(20)
 
 ## 2. Profil supprimé
-merged_df = df_old.merge(df_new, on=PROFILES_COL, how='left', indicator=True)
-samples_not_in_df_new = merged_df[merged_df['_merge'] == 'left_only']
-samples_not_in_df_new = samples_not_in_df_new.drop(columns='_merge')
-
-deleted_profiles_ids = samples_not_in_df_new['Identification nationale PP'].unique()
-
-df_deleted_profiles = df_old[df_old['Identification nationale PP'].isin(deleted_profiles_ids)]
+merged_df = df_old[[PROFILES_COL]].merge(df_new[[PROFILES_COL]], on=PROFILES_COL, how='left',indicator=True)
+removed_ids = merged_df.loc[merged_df._merge=="left_only",PROFILES_COL].drop_duplicates()
 
 # format the dataframe the good way
-df_deleted_profiles = reformat_dataset(df_deleted_profiles)
+df_deleted_profiles = reformat_dataset(df_old.loc[df_old[PROFILES_COL].isin(removed_ids)])
 
 # export the dataframe
 df_deleted_profiles.to_csv("profils_supprimés.csv", index=False)
+
 
 print_loading_bar(40)
 
