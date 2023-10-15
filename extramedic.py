@@ -14,10 +14,10 @@ args = parser.parse_args()
 
 logger.info("loading data")
 # Load the data
-df_old = pd.read_csv(args.old_path, sep="|", low_memory=False).sample(10000)
+df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
 logger.info("old data loaded")
 
-df_new = pd.read_csv(args.new_path, sep="|", low_memory=False).sample(10000)
+df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
 
 logger.info("new data loaded")
 # Drop the last column
@@ -42,25 +42,7 @@ def reformat_dataset(df):
 
 
 
-def print_loading_bar(percent):
-    bar_length = 1
-    filled_length = int(bar_length * percent)
-    bar = '=' * filled_length + '-' * (bar_length - filled_length)
-    print(f'\r[{bar}] {percent:.1f}%', end='', flush=True)
 
-def append_if_not_present(value, array):
-    if value not in array:
-        array.append(value)
-    return array
-
-def get_occurences(item, dataframe):
-    # index = indexes[-1]
-    # df = dataframes[0]
-    occurences = 0
-    occurences += dataframe['Profession'].value_counts().get(item, 0)
-    occurences += dataframe['Spécialité'].value_counts().get(item, 0)
-    
-    return occurences
 
 COL_CHANGE_NUMBER_VOIE = "Numéro Voie (coord. structure)"
 COL_CHANGE_TYPE_VOIE = "Code type de voie (coord. structure)"
