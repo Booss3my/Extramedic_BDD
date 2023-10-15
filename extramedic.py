@@ -1,6 +1,6 @@
 import pandas as pd
 import argparse
-
+from loguru import logger
 
 
 parser = argparse.ArgumentParser(
@@ -12,10 +12,14 @@ parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Pa
 args = parser.parse_args()
 
 
+logger.info("loading data")
 # Load the data
-df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
-df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
+df_old = pd.read_csv(args.old_path, sep="|", low_memory=False).sample(10000)
+logger.info("old data loaded")
 
+df_new = pd.read_csv(args.new_path, sep="|", low_memory=False).sample(10000)
+
+logger.info("new data loaded")
 # Drop the last column
 df_old.drop(columns=df_old.columns[-1], inplace=True)
 df_new.drop(columns=df_new.columns[-1], inplace=True)
@@ -35,6 +39,8 @@ def reformat_dataset(df):
     new_df['Spécialité'] = df['Libellé savoir-faire']
     new_df['Type_d\'exercice'] = df['Code catégorie professionnelle']
     return new_df
+
+
 
 def print_loading_bar(percent):
     bar_length = 1
