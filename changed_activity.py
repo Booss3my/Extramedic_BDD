@@ -5,7 +5,7 @@ merged_df = df_old[columns_of_interest].merge(df_new[columns_of_interest], on=PR
 
 changed_samples = merged_df[merged_df[COL_CHANGE_ACTIVITY+'_old'] != merged_df[COL_CHANGE_ACTIVITY+'_new']]
 
-changed_samples_ids = changed_samples[PROFILES_COL].drop_duplicates()
+changed_samples_ids = changed_samples[PROFILES_COL].unique()
 
 df_changed_activity_new = df_new[df_new[PROFILES_COL].isin(changed_samples_ids)]
 df_changed_activity_old = df_old[df_old[PROFILES_COL].isin(changed_samples_ids)]
