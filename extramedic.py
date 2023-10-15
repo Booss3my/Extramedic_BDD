@@ -1,9 +1,20 @@
-import sys
 import pandas as pd
+import argparse
+
+
+
+parser = argparse.ArgumentParser(
+                    prog='EM')
+
+parser.add_argument('--old_path', type=str, default="Database/old.txt", help="Path to old data")
+parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Path to new data")
+
+args = parser.parse_args()
+
 
 # Load the data
-df_old = pd.read_csv("Database/old.txt", sep="|", low_memory=False)
-df_new = pd.read_csv("Database/new.txt", sep="|", low_memory=False)
+df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
+df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
 
 # Drop the last column
 df_old.drop(columns=df_old.columns[-1], inplace=True)
