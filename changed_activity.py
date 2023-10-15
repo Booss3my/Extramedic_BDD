@@ -6,8 +6,8 @@ columns_of_interest = [PROFILES_COL,COL_CHANGE_ACTIVITY]
 merged_df = df_old[columns_of_interest].merge(df_new[columns_of_interest], on=PROFILES_COL, suffixes=('_old', '_new'), how='inner').dropna(subset=[COL_CHANGE_ACTIVITY+"_old",COL_CHANGE_ACTIVITY+"_new"], thresh=1)
 
 
-print(len(merged_df))
-changed_samples_ids = merged_df.loc[(merged_df[COL_CHANGE_ACTIVITY+'_old'] != merged_df[COL_CHANGE_ACTIVITY+'_new']),PROFILES_COL].unique()
+exit(0)
+changed_samples_ids = merged_df.loc[(merged_df[COL_CHANGE_ACTIVITY+'_old'] != merged_df[COL_CHANGE_ACTIVITY+'_new']),PROFILES_COL].drop_duplicates()
 
 df_changed_activity_new = df_new[df_new[PROFILES_COL].isin(changed_samples_ids)]
 df_changed_activity_old = df_old[df_old[PROFILES_COL].isin(changed_samples_ids)]
