@@ -1,57 +1,6 @@
 import pandas as pd
-import argparse
-from loguru import logger
-
-
-parser = argparse.ArgumentParser(
-                    prog='EM')
-
-parser.add_argument('--old_path', type=str, default="Database/old.txt", help="Path to old data")
-parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Path to new data")
-
-args = parser.parse_args()
-
-
-logger.info("loading data")
-# Load the data
-df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
-logger.info("old data loaded")
-
-df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
-
-logger.info("new data loaded")
-# Drop the last column
-df_old.drop(columns=df_old.columns[-1], inplace=True)
-df_new.drop(columns=df_new.columns[-1], inplace=True)
-
-def reformat_dataset(df):
-    """
-    This function returns a dataframe that only contains relevant information that are:
-        - the name
-        - the profession
-        - the speciality (if there is one)
-    """
-    new_df = pd.DataFrame()
-    new_df['Nom_complet'] = df['Nom d\'exercice'] + ' ' + df["Prénom d\'exercice"]
-    new_df['Numéro_identification'] = df['Identification nationale PP']
-    new_df['Code_postal'] = df[COL_CHANGE_CODE_POSTAL]
-    new_df['Profession'] = df['Libellé profession']
-    new_df['Spécialité'] = df['Libellé savoir-faire']
-    new_df['Type_d\'exercice'] = df['Code catégorie professionnelle']
-    return new_df
-
-
-
-
-
-COL_CHANGE_NUMBER_VOIE = "Numéro Voie (coord. structure)"
-COL_CHANGE_TYPE_VOIE = "Code type de voie (coord. structure)"
-COL_CHANGE_LIBELLE_VOIE = "Libellé Voie (coord. structure)"
-COL_CHANGE_MENTION = "Mention distribution (coord. structure)"
-COL_CHANGE_CEDEX = "Bureau cedex (coord. structure)"
-COL_CHANGE_CODE_POSTAL = "Code postal (coord. structure)"
-COL_CHANGE_CODE_COMMUNE = "Code commune (coord. structure)"
-COL_CHANGE_CODE_PAYS = "Code pays (coord. structure)"
+from config import *
+from utils import *
 
 """
 Le projet Extramedic
@@ -68,7 +17,7 @@ B. Exportation des résultats. Les changements identifiés seront exportés dans
 """
 
 ## 1. Nouveau profil
-PROFILES_COL = "Identification nationale PP"
+
 
 profiles_old = df_old.loc[:, PROFILES_COL]
 profiles_new = df_new.loc[:, PROFILES_COL]
@@ -98,7 +47,6 @@ df_deleted_profiles.to_csv("profils_supprimés.csv", index=False)
 print_loading_bar(40)
 
 ## 3. Changement d'Activité
-COL_CHANGE_ACTIVITY = "Code secteur d'activité"
 merged_df = df_old.merge(df_new, on='Identification nationale PP', suffixes=('_old', '_new'), how='inner')
 
 changed_samples = merged_df[merged_df[COL_CHANGE_ACTIVITY+'_old'] != merged_df[COL_CHANGE_ACTIVITY+'_new']]
