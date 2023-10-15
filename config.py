@@ -33,10 +33,16 @@ address_cols = [
 ]
 
 
-
 #keep only columns of interest (memory)
 columns_of_interest =["Identification nationale PP", "Code secteur d'activité",'Nom d\'exercice',"Prénom d\'exercice",'Libellé profession'\
                        ,'Libellé savoir-faire','Code catégorie professionnelle'] + address_cols
 
 df_old = df_old[columns_of_interest]
 df_new = df_new[columns_of_interest]
+
+
+#convert to string then strip(), to avoid (having categories like "A " and "A")
+for col in df_old.columns:
+  if df_old[col].dtype=="object":
+    df_old[col] = df_old[col].astype("str").apply(lambda x:x.strip())
+    df_new[col] = df_new[col].astype("str").apply(lambda x:x.strip())
