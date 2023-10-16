@@ -8,7 +8,7 @@ df_old= df_old.drop_duplicates(subset=PROFILES_COL,keep="first")
 df_new= df_new.drop_duplicates(subset=PROFILES_COL,keep="last")
 
 #drop line if both old and new activity are NULL
-merged_df = df_old[columns_of_interest].merge(df_new[columns_of_interest], on=PROFILES_COL, suffixes=('_old', '_new'), how='inner').replace('none',np.NaN)
+merged_df = df_old[columns_of_interest].merge(df_new[columns_of_interest], on=PROFILES_COL, suffixes=('_old', '_new'), how='inner').replace('None',np.NaN).replace('None',np.NaN)
 merged_df = merged_df.dropna(subset=[COL_CHANGE_ACTIVITY+"_old",COL_CHANGE_ACTIVITY+"_new"], thresh=1)
 
 changed_samples_ids = merged_df.loc[(merged_df[COL_CHANGE_ACTIVITY+'_old'] != merged_df[COL_CHANGE_ACTIVITY+'_new']),PROFILES_COL].drop_duplicates()
