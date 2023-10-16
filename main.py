@@ -34,5 +34,5 @@ with tqdm(total=total_scripts, unit="script", desc="Lancement des tâches") as p
         pbar.update(1)
 
 print("All scripts have been executed.")
-print("Removing temporary parquet files ...")
-shutil.rmtree(data_folder)
+# print("Removing temporary parquet files ...")
+# shutil.rmtree(data_folder)
