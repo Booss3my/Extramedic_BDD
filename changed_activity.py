@@ -1,5 +1,6 @@
 from config import *
 
+df_old,df_new = read_files(args)
 columns_of_interest = [PROFILES_COL,COL_CHANGE_ACTIVITY]
 
 df_old= df_old.drop_duplicates(subset=PROFILES_COL,keep="first")
