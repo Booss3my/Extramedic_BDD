@@ -7,12 +7,18 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('--old_path', type=str, default="Database/old.txt", help="Path to old data")
 parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Path to new data")
-
+parser.add_argument('--ftype', type=str, default="csv", help="input file type")
 args = parser.parse_args()
 
 
-df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
-df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
+
+
+if args.ftype =="csv":
+    df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
+    df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
+elif args.ftype =="parquet":
+    df_old = pd.read_parquet(args.old_path)
+    df_new = pd.read_parquet(args.new_path)
 
 
 
