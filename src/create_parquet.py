@@ -30,5 +30,5 @@ if not os.path.exists(data_folder) :
             df_new[col] = df_new[col].astype("str").apply(lambda x:x.strip()).astype("str")
 
 
-df_old.to_parquet(os.path.join(data_folder,"old.parquet"))
-df_new.to_parquet(os.path.join(data_folder,"new.parquet"))
+    df_old.to_parquet(os.path.join(data_folder,"old.parquet"))
+    df_new.to_parquet(os.path.join(data_folder,"new.parquet"))
