@@ -5,7 +5,7 @@ from src.config import *
 import os
 import sys
 
-Rpath = os.dirname(__file__)
+Rpath = os.path.dirname(__file__)
 sys.append(Rpath)
 sys.append(os.path.join(Rpath,"src"))
 
