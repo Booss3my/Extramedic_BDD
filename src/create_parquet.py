@@ -4,7 +4,7 @@ import os
 
 #convert data to parquet to make reading a lot faster
 
-print("Creating temporary parquet files for data for faster reading")
+print("\nCreating temporary parquet files for data for faster reading....\n")
 
 if not os.path.exists(data_folder) :
     os.mkdir(data_folder)
