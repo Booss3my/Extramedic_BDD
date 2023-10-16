@@ -13,4 +13,4 @@ statistics = cree.merge(supp,how="outer",left_index=True,right_index=True)\
 
 statistics.loc["Nombre Total"] = statistics.sum()
 
-statistics.to_csv("statistiques.csv")
+statistics.to_csv("statistiques.csv",index=False)
