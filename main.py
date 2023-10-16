@@ -6,8 +6,8 @@ import os
 import sys
 
 Rpath = os.path.dirname(__file__)
-sys.append(Rpath)
-sys.append(os.path.join(Rpath,"src"))
+sys.path.append(Rpath)
+sys.path.append(os.path.join(Rpath,"src"))
 
 
 scripts_to_run = [
