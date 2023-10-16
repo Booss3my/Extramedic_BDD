@@ -10,7 +10,7 @@ removed_ids = merged_df.loc[merged_df._merge=="left_only",PROFILES_COL].drop_dup
 df_deleted_profiles = reformat_dataset(df_old.loc[df_old[PROFILES_COL].isin(removed_ids)])
 
 
-print(f"{len(df_deleted_profiles)} profils supprimés")
+print(f"\n{len(df_deleted_profiles)} profils supprimés")
 
 # export the dataframe
 df_deleted_profiles.to_csv("profils_supprimés.csv", index=False)
