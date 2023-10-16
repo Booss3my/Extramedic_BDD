@@ -13,5 +13,5 @@ df_deleted_profiles = reformat_dataset(df_old.loc[df_old[PROFILES_COL].isin(remo
 print(f"\n{len(df_deleted_profiles)} profils supprimés")
 
 # export the dataframe
-df_deleted_profiles.to_csv("profils_supprimés.csv", index=False)
+df_deleted_profiles.to_csv(os.path.join(args.output_rpath,"profils_supprimés.csv"), index=False)
 

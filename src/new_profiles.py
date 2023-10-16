@@ -1,6 +1,6 @@
 from config import *
 from utils import reformat_dataset, print_loading_bar   
-
+import os
 
 df_old,df_new = read_files(args)
 
@@ -16,7 +16,7 @@ df_new_profiles = reformat_dataset(df_new_profiles)
 print(f"\n{len(df_new_profiles)} nouveaux profils")
 
 # export the dataframe
-df_new_profiles.to_csv("nouveaux_profils.csv", index=False)
+df_new_profiles.to_csv(os.path.join(args.output_rpath,"nouveaux_profils.csv"), index=False)
 
 
 

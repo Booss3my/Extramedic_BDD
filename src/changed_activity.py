@@ -34,4 +34,4 @@ print(f"\n{len(activity_df.loc[~(activity_df['Ancienne_activité'].isna()|activi
 print(f"\n{len(activity_df)} total changement d'activité")
 
 # export the dataframe
-activity_df.to_csv("changement_activité.csv", index=False)
+activity_df.to_csv(os.path.join(args.output_rpath,"changement_activité.csv"), index=False)
