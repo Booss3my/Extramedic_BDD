@@ -2,7 +2,7 @@ from config import *
 from utils import reformat_dataset, print_loading_bar   
 import os
 
-df_old,df_new = read_files(args)
+df_old,df_new = read_files()
 
 profiles_old = df_old.loc[:, PROFILES_COL]
 profiles_new = df_new.loc[:, PROFILES_COL]

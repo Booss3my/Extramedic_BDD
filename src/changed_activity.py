@@ -1,7 +1,7 @@
 from config import *
 import numpy as np
 
-df_old,df_new = read_files(args)
+df_old,df_new = read_files()
 cols = [PROFILES_COL,COL_CHANGE_ACTIVITY]
 
 
