@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--old_path', type=str, default="Database/old.txt", help="Path to old data")
 parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Path to new data")
 parser.add_argument('--ftype', type=str, default="csv", help="input file type")
-parser.add_argument('--output_rpath', type=str, default=os.path.join(Rpath,"created_files"), help="root to directory where files will be created")
+parser.add_argument('--output_rpath', type=str, default=os.path.join(Rpath,"Output"), help="root to directory where files will be created")
 args = parser.parse_args()
 
 arguments_list = [f"--old_path={args.old_path}",f"--new_path={args.new_path}",f"--ftype={args.ftype}",f"--output_rpath={args.output_rpath}"]
