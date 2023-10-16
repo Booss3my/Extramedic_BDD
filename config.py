@@ -53,7 +53,7 @@ def read_files(args):
     #convert to string then strip(), to avoid (having categories like "A " and "A")
     for col in df_old.columns:
         if df_old[col].dtype=="object":
-            df_old[col] = df_old[col].astype("str").apply(lambda x:x.strip())
-            df_new[col] = df_new[col].astype("str").apply(lambda x:x.strip())
+            df_old[col] = df_old[col].astype("str").apply(lambda x:x.strip()).astype("str")
+            df_new[col] = df_new[col].astype("str").apply(lambda x:x.strip()).astype("str")
 
     return df_old,df_new
