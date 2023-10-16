@@ -11,10 +11,10 @@ sys.path.append(os.path.join(Rpath,"src"))
 
 
 scripts_to_run = [
-    # {"script": os.path.join(Rpath,"src/new_profiles.py"), "args":arguments_list},
-    # {"script": os.path.join(Rpath,"src/removed_profils.py"), "args":arguments_list},
-    # {"script": os.path.join(Rpath,"src/changed_activity.py"), "args":arguments_list},
-    # {"script": os.path.join(Rpath,"src/changed_location.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/new_profiles.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/removed_profils.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/changed_activity.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/changed_location.py"), "args":arguments_list},
     {"script": os.path.join(Rpath,"src/statistics.py"), "args":[]}
 
 ]
