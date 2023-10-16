@@ -18,8 +18,8 @@ for i,col in enumerate(address_cols):
     new_add+= " " + df_new[col].fillna("").astype("str")
     old_add+= " " + df_old[col].fillna("").astype("str")
 
-df_old.drop(address_cols,axis=1,inplace=True)
-df_new.drop(address_cols,axis=1,inplace=True)
+df_old=df_old.drop(address_cols,axis=1)
+df_new=df_new.drop(address_cols,axis=1)
 
 df_old["full_address"] = old_add
 df_new["full_address"] = new_add
