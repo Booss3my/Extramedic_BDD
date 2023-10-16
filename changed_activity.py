@@ -24,7 +24,14 @@ activity_df['Code_postal'] = changed_samples[COL_CHANGE_CODE_POSTAL]
 activity_df['Profession'] = changed_samples['Libellé profession']
 activity_df['Spécialité'] = changed_samples['Libellé savoir-faire']
 activity_df['Type_d\'exercice'] = changed_samples['Code catégorie professionnelle']
-activity_df['Ancienne_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_old"].fillna("none")
-activity_df['Nouvelle_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_new"].fillna("none")
+activity_df['Ancienne_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_old"]
+activity_df['Nouvelle_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_new"]
+
+
+print(f"{len(activity_df.loc[activity_df['Nouvelle_activité'].isna()])} renseignement d'activité )")
+print(f"{len(activity_df.loc[activity_df['Ancienne_activité'].isna()])} effacement d'activité")
+print(f"{len(activity_df.loc[~(activity_df['Ancienne_activité'].isna()|activity_df['Nouvelle_activité'].isna())])} nouvelle d'activité")
+print(f"{len(activity_df)} total changement d'activité")
+
 # export the dataframe
 activity_df.to_csv("changement_activité.csv", index=False)

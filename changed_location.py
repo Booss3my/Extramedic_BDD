@@ -35,5 +35,8 @@ address_df['Type_d\'exercice'] = changes_df['Code catégorie professionnelle']
 address_df['Ancienne_adresse'] = changes_df["full_address_old"]
 address_df["Nouvelle_adresse"] = changes_df["full_address_new"]
 
+
+
+print(f"{len(address_df)} total changement d'adresse")
 # export the dataframe
 address_df.to_csv("changement_adresse.csv", index=False)
