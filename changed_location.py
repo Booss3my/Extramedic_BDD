@@ -1,11 +1,5 @@
 from config import *
 
-
-def concatenate_values(row):
-    # Convert non-string values to strings before concatenation
-    concatenated_values = ' - '.join(str(row[col]) if pd.notna(row[col]) else '' for col in address_cols)
-    return concatenated_values
-
 df_old= df_old.drop_duplicates(subset=PROFILES_COL,keep="first")
 df_new= df_new.drop_duplicates(subset=PROFILES_COL,keep="last")
 
