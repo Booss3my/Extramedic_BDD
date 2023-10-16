@@ -3,6 +3,11 @@ from tqdm import tqdm
 from src.config import * 
 import os
 
+#create output folder if it doesnt exist
+if not os.path.exists(args.output_rpath):
+    os.mkdir(args.output_rpath)
+
+#scripts to run and their arguments
 scripts_to_run = [
     {"script": os.path.join(Rpath,"src/new_profiles.py"), "args":arguments_list},
     {"script": os.path.join(Rpath,"src/removed_profils.py"), "args":arguments_list},
