@@ -1,31 +1,16 @@
+import pandas as pd
+
+cree= pd.read_csv("nouveaux_profils.csv").groupby("Profession")[["Numéro_identification"]].count().rename({"Numéro_identification": "Nombre_créé"},axis=1)
+supp = pd.read_csv("profils_supprimés.csv").groupby("Profession")[["Numéro_identification"]].count().rename({"Numéro_identification": "Nombre_supprimé"},axis=1)
+chgt_act = pd.read_csv("changement_activité.csv").groupby("Profession")[["Numéro_identification"]].count().rename({"Numéro_identification": "Nombre_chgmt_activité"},axis=1)
+chgt_add = pd.read_csv("changement_adresse.csv").groupby("Profession")[["Numéro_identification"]].count().rename({"Numéro_identification": "Nombre_chgmt_addresse"},axis=1)
 
 
-dataframes = [
-    df_deleted_profiles,
-    df_new_profiles,
-    activity_df,
-    address_df
-]
+statistics = cree.merge(supp,how="outer",left_index=True,right_index=True)\
+.merge(chgt_act,how="outer",left_index=True,right_index=True)\
+.merge(chgt_add,how="outer",left_index=True,right_index=True).fillna(0).astype("int")
 
-indexes = []
-for dataframe in dataframes:
-    for item in dataframe['Profession'].value_counts().index.tolist():
-        if item != 'Médecin':
-            indexes = append_if_not_present(item, indexes)
-    for item in dataframe['Spécialité'].value_counts().index.tolist():
-        indexes = append_if_not_present(item, indexes)
 
-data = {}
-for index in indexes:
-    occurences = [get_occurences(index, dataframe) for dataframe in dataframes]
-    data[index] = occurences
+statistics.loc["Nombre Total"] = statistics.sum()
 
-df_stats = pd.DataFrame.from_dict(data, orient='index', columns=['Profil supprimé', 'Profil ajouté', 'Changement activité', 'Changement adresse'])
-
-df_stats = df_stats.sort_index()
-
-df_stats.index.name = "Profession"
-df_stats.to_csv("statistiques.csv")
-
-print_loading_bar(100)
-
+statistics.to_csv("statistiques.csv")
