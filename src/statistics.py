@@ -14,6 +14,8 @@ chgt_add = pd.read_csv(os.path.join(args.output_rpath,"changement_adresse.csv"),
 
 statistics = cree.merge(supp,how="outer",left_index=True,right_index=True)\
 .merge(chgt_act,how="outer",left_index=True,right_index=True)\
+.merge(nv_add,how="outer",left_index=True,right_index=True)\
+.merge(del_add,how="outer",left_index=True,right_index=True)\
 .merge(chgt_add,how="outer",left_index=True,right_index=True).fillna(0).astype("int")
 
 
@@ -21,4 +23,4 @@ statistics.loc["Nombre Total"] = statistics.sum()
 
 print(statistics)
 
-statistics.to_csv(os.path.join(args.output_rpath,"statistiques.csv"),index=False)
+statistics.to_csv(os.path.join(args.output_rpath,"statistiques.csv"))
