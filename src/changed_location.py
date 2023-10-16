@@ -36,7 +36,5 @@ address_df['Ancienne_adresse'] = changes_df["full_address_old"]
 address_df["Nouvelle_adresse"] = changes_df["full_address_new"]
 
 
-
-print(f"\n{len(address_df)} total changement d'adresse")
 # export the dataframe
 address_df.to_csv(os.path.join(args.output_rpath,"changement_adresse.csv"), index=False)
