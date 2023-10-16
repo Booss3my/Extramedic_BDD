@@ -4,10 +4,10 @@ import time
 from config import * 
 
 scripts_to_run = [
-    {"script": "new_profiles.py", "args":args},
-    {"script": "removed_profiles.py", "args":args},
-    {"script": "changed_activity.py", "args":args},
-    {"script": "changed_location.py", "args":args},
+    {"script": "new_profiles.py", "args":arguments_list},
+    {"script": "removed_profiles.py", "args":arguments_list},
+    {"script": "changed_activity.py", "args":arguments_list},
+    {"script": "changed_location.py", "args":arguments_list},
 
 ]
 
