@@ -22,8 +22,8 @@ activity_df['Code_postal'] = df_changed_activity_new[COL_CHANGE_CODE_POSTAL]
 activity_df['Profession'] = df_changed_activity_new['Libellé profession']
 activity_df['Spécialité'] = df_changed_activity_new['Libellé savoir-faire']
 activity_df['Type_d\'exercice'] = df_changed_activity_new['Code catégorie professionnelle']
-activity_df['Ancienne_activité'] = df_changed_activity_old[COL_CHANGE_ACTIVITY]
-activity_df['Nouvelle_activité'] = df_changed_activity_new[COL_CHANGE_ACTIVITY]
+activity_df['Ancienne_activité'] = df_changed_activity_old[COL_CHANGE_ACTIVITY].fillna("none")
+activity_df['Nouvelle_activité'] = df_changed_activity_new[COL_CHANGE_ACTIVITY].fillna("none")
 
 # export the dataframe
 activity_df.to_csv("changement_activité.csv", index=False)
