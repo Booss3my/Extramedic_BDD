@@ -10,7 +10,7 @@ parser.add_argument('--new_path', type=str, default="Database/new.txt", help="Pa
 parser.add_argument('--ftype', type=str, default="csv", help="input file type")
 args = parser.parse_args()
 
-arguments_list = [args.old_path,args.new_path,args.ftype]
+arguments_list = [f"--old_path={args.old_path}",f"--new_path=${args.new_path}",f"--ftype=${args.ftype}"]
 
 
 COL_CHANGE_ACTIVITY = "Code secteur d'activité"
