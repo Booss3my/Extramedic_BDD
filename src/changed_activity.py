@@ -28,7 +28,7 @@ activity_df['Ancienne_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_old"]
 activity_df['Nouvelle_activité'] = changed_samples[COL_CHANGE_ACTIVITY+"_new"]
 
 
-print(f"\n{len(activity_df.loc[activity_df['Nouvelle_activité'].isna()])} renseignement d'activité )")
+print(f"\n{len(activity_df.loc[activity_df['Nouvelle_activité'].isna()])} renseignement d'activité ")
 print(f"\n{len(activity_df.loc[activity_df['Ancienne_activité'].isna()])} effacement d'activité")
 print(f"\n{len(activity_df.loc[~(activity_df['Ancienne_activité'].isna()|activity_df['Nouvelle_activité'].isna())])} nouvelle d'activité")
 print(f"\n{len(activity_df)} total changement d'activité")

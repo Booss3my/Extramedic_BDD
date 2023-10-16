@@ -1,6 +1,5 @@
 import subprocess
 from tqdm import tqdm
-import time
 from src.config import * 
 import os
 import sys
