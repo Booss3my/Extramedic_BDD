@@ -21,16 +21,14 @@ for i,col in enumerate(address_cols):
 df_old=df_old.drop(address_cols,axis=1)
 df_new=df_new.drop(address_cols,axis=1)
 
-df_old["full_address"] = old_add
-df_new["full_address"] = new_add
+df_old["full_address"] = old_add.apply(lambda x:x.strip())
+df_new["full_address"] = new_add.apply(lambda x:x.strip())
 
 merged_df = df_old[[PROFILES_COL,"full_address"]].merge(df_new, on=PROFILES_COL, suffixes=('_old', '_new'),how="inner")
-
 
 changes_mask = (merged_df["full_address_old"] != merged_df["full_address_new"])
 
 changes_df = merged_df[changes_mask].drop_duplicates()
-
 
 # format the dataframe the good way
 address_df = pd.DataFrame()
@@ -44,5 +42,3 @@ address_df["Nouvelle_adresse"] = changes_df["full_address_new"]
 
 # export the dataframe
 address_df.to_csv("changement_adresse.csv", index=False)
-
-
