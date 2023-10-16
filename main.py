@@ -1,13 +1,20 @@
 import subprocess
 from tqdm import tqdm
 import time
-from config import * 
+from src.config import * 
+import os
+import sys
+
+Rpath = os.dirname(__file__)
+sys.append(Rpath)
+sys.append(os.path.join(Rpath,"src"))
+
 
 scripts_to_run = [
-    {"script": "new_profiles.py", "args":arguments_list},
-    {"script": "removed_profiles.py", "args":arguments_list},
-    {"script": "changed_activity.py", "args":arguments_list},
-    {"script": "changed_location.py", "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/new_profiles.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/removed_profiles.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/changed_activity.py"), "args":arguments_list},
+    {"script": os.path.join(Rpath,"src/changed_location.py"), "args":arguments_list},
 
 ]
 
