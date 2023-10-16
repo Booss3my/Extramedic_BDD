@@ -26,4 +26,4 @@ activity_df['Ancienne_activité'] = df_changed_activity_old[COL_CHANGE_ACTIVITY]
 activity_df['Nouvelle_activité'] = df_changed_activity_new[COL_CHANGE_ACTIVITY].fillna("none")
 
 # export the dataframe
-activity_df.to_csv("changement_activité.csv", index=False)
+activity_df.to_parquet("changement_activité.parquet", index=False)
