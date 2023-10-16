@@ -1,4 +1,5 @@
 from config import *
+import numpy as np
 
 df_old,df_new = read_files()
 df_old= df_old.drop_duplicates(subset=PROFILES_COL,keep="first")
@@ -7,11 +8,11 @@ df_new= df_new.drop_duplicates(subset=PROFILES_COL,keep="last")
 
 for i,col in enumerate(address_cols):
   if i==0:
-    old_add = df_old[col].fillna("").copy().astype("str")
-    new_add = df_new[col].fillna("").copy().astype("str")
+    old_add = df_old[col].replace("nan",np.nan).fillna("").copy().astype("str")
+    new_add = df_new[col].replace("nan",np.nan).fillna("").copy().astype("str")
   else:
-    new_add+= " " + df_new[col].fillna("").astype("str")
-    old_add+= " " + df_old[col].fillna("").astype("str")
+    new_add+= " " + df_new[col].replace("nan",np.nan).fillna("").astype("str")
+    old_add+= " " + df_old[col].replace("nan",np.nan).fillna("").astype("str")
 
 df_old=df_old.drop(address_cols,axis=1)
 df_new=df_new.drop(address_cols,axis=1)
