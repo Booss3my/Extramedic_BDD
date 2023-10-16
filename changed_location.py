@@ -1,5 +1,6 @@
 from config import *
 
+df_old,df_new = read_files(args)
 df_old= df_old.drop_duplicates(subset=PROFILES_COL,keep="first")
 df_new= df_new.drop_duplicates(subset=PROFILES_COL,keep="last")
 

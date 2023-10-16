@@ -12,15 +12,17 @@ args = parser.parse_args()
 
 
 
-
-if args.ftype =="csv":
-    df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
-    df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
-elif args.ftype =="parquet":
-    df_old = pd.read_parquet(args.old_path)
-    df_new = pd.read_parquet(args.new_path)
-else:
-   print("Wrong ftype argument")
+def read_files(args):
+    if args.ftype =="csv":
+        df_old = pd.read_csv(args.old_path, sep="|", low_memory=False)
+        df_new = pd.read_csv(args.new_path, sep="|", low_memory=False)
+    elif args.ftype =="parquet":
+        df_old = pd.read_parquet(args.old_path)
+        df_new = pd.read_parquet(args.new_path)
+    else:
+        print("Wrong ftype argument")
+        exit(1)
+    return df_old,df_new
 
 
 COL_CHANGE_ACTIVITY = "Code secteur d'activité"
